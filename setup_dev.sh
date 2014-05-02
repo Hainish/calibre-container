@@ -22,5 +22,9 @@ echo "exec wmaker" > ~/.xinitrc
 cp /vagrant/.bash_profile ~
 EOF
 
+if [ -e /vagrant/custom_config.sh ]; then
+  /vagrant/custom_config.sh
+fi
+
 sudo -v && wget -nv -O- https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py | sudo python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()"
 sudo shutdown -h now
