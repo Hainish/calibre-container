@@ -3,14 +3,14 @@
 # quit on fail
 set -e
 
-DEPENDENCIES="x-window-system virtualbox-guest-x11 wmaker rungetty libltdl7 udisks policykit-desktop-privileges"
+# x windows, window manager, virtualbox guest, mount as non-root, boot to gui
+DEPENDENCIES="x-window-system virtualbox-guest-x11 wmaker rungetty udisks policykit-desktop-privileges"
+
+# additional packages for calibre
+DEPENDENCIES="$DEPENDENCIES libltdl7 fonts-liberation fonts-mathjax libaudio2 libchm1 libjs-mathjax libjs-sphinxdoc libjs-underscore libmysqlclient18 libpodofo0.9.0 libqt4-dbus libqt4-declarative libqt4-designer libqt4-help libqt4-network libqt4-opengl libqt4-script libqt4-scripttools libqt4-sql libqt4-sql-mysql libqt4-svg libqt4-test libqt4-xml libqt4-xmlpatterns libqtassistantclient4 libqtcore4 libqtdbus4 libqtgui4 libqtwebkit4 libtidy-0.99-0 libwebpmux1 mysql-common python-apsw python-beautifulsoup python-cherrypy3 python-cssselect python-cssutils python-dateutil python-dnspython python-feedparser python-markdown python-mechanize python-netifaces python-pil python-pygments python-pyparsing python-qt4 python-repoze.lru python-routes python-sip python-utidylib python-webob qdbus qtchooser qtcore4-l10n"
 
 sudo apt-get update
 sudo apt-get -y install $DEPENDENCIES
-
-#echo 'ATTRS{idVendor}=="1949",ATTRS{idProduct}=="0004",MODE="0666",GROUP="vagrant"' > /etc/udev/rules.d/70-kindle.rules
-#sed -i "s@^      <allow_any.*@      <allow_any>yes</allow_any>@" /usr/share/polkit-1/actions/org.freedesktop.udisks.policy
-#cp /vagrant/55-myconf.conf /etc/polkit-1/localauthority/50-local.d/
 
 sed -i "s@^exec /sbin/getty.*@exec /sbin/rungetty tty1 --autologin vagrant@" /etc/init/tty1.conf
 
