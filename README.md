@@ -11,3 +11,5 @@ If you have custom setup instructions:
  - `vagrant up`
  - Run `virtualbox` and in preferences attach the desired USB device
  - `vagrant up`
+ - Configure calibre however you like
+ - Optional: change the `vm.gui` option in the `Vagrantfile` to `false` if you want it to run headless
